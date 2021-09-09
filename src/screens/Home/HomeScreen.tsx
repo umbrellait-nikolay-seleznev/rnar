@@ -8,16 +8,19 @@ import {
   ViroARTrackingTargets,
   ViroImage,
   ViroAnimations,
+  ViroFlexView,
 } from "@viro-community/react-viro";
 
-const qrCodeImage = require("../../assets/images/anchors/qr-code.jpg");
+import { styles } from "./HomeScreen.styles";
+
+const qrCodeImage = require("../../assets/images/anchors/qr-code.png");
 const rnLogoImage = require("../../assets/images/content/rnLogo.png");
 
 ViroARTrackingTargets.createTargets({
   qrCode: {
     source: qrCodeImage,
     orientation: "Up",
-    physicalWidth: 0.035,
+    physicalWidth: 0.177,
   },
 });
 
@@ -27,7 +30,7 @@ ViroAnimations.registerAnimations({
       rotateZ: 360,
     },
     easing: "Linear",
-    duration: 1000,
+    duration: 4000,
   },
 });
 
@@ -53,14 +56,28 @@ const Scene = () => {
         target="qrCode"
         onAnchorFound={() => setRunAnimation(true)}
       >
-        <ViroNode
-          key="rnLogo"
+        <ViroFlexView
           opacity={1}
-          position={[0, 0, 0]}
-          animation={{ name: "animateLogo", run: runAnimation }}
+          position={[-0.8, -1.8, -1.15]}
+          rotation={[-90, 0, 0]}
         >
-          <ViroImage height={0.1} width={0.1} source={rnLogoImage} />
-        </ViroNode>
+          <ViroImage
+            height={0.75}
+            width={0.8}
+            source={rnLogoImage}
+            animation={{ name: "animateLogo", loop: true, run: runAnimation }}
+          />
+          <ViroText
+            color="#03A7D2"
+            style={styles.text}
+            text="React Native is awesome!"
+            textAlign="center"
+            textAlignVertical="bottom"
+            textLineBreakMode="None"
+            position={[0, -0.2, 0]}
+            width={60}
+          />
+        </ViroFlexView>
       </ViroARImageMarker>
     </ViroNode>
   );
