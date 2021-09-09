@@ -9,9 +9,9 @@ Android - Partial
 Try to use square markers for the anchors, so the ViroReact could easily recognize them.
 
 ## Useful info
-We use [ViroReact](https://viromedia.com/viroreact/) ar library for this project.
-Docs - https://docs.viromedia.com/docs
-Old ViroReact repository - https://github.com/viromedia/viro
+We use [ViroReact](https://viromedia.com/viroreact/) AR library for this project.  
+Docs - https://docs.viromedia.com/docs  
+Old ViroReact repository - https://github.com/viromedia/viro  
 Current ViroReact repository - https://github.com/ViroCommunity/viro
 
 ## Basic setup
