@@ -1,6 +1,8 @@
-declare module '@viro-community/react-viro' {
+/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable react/sort-comp */
+declare module "@viro-community/react-viro" {
   // Imports
-  import {Component} from 'react';
+  import { Component } from "react";
 
   /* ##### DEPRECATION WARNING - ViroSceneNavigator may be removed in future releases. Use ViroVRSceneNavigator instead #####
   ViroSceneNavigator is used to transition between multiple scenes. */
@@ -15,7 +17,7 @@ declare module '@viro-community/react-viro' {
     apiKey: string;
     /* ViroSceneNavigator uses "scene" objects like the following to
     describe a scene. */
-    initialScene: {scene: Function};
+    initialScene: { scene: Function };
     /* Called when either the user physically decides to exit vr (hits
     the "X" buton). */
     onExitViro?: Function;
@@ -23,6 +25,7 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroSceneNavigator extends Component<ViroSceneNavigatorProps> {
     public getRandomTag(): any;
+
     /* Pushes a scene and reference it with the given key if provided.
     If the scene has been previously pushed, we simply show the scene again.
     Note that the back history order of which scenes were pushed is preserved.
@@ -34,6 +37,7 @@ declare module '@viro-community/react-viro' {
     push ("sceneKey", scene);
     push (scene); */
     public push(param1: any, param2: any): any;
+
     /* Replace the top scene in the stack with the given scene. The remainder of the back
     history is kept in the same order as before.
 
@@ -42,6 +46,7 @@ declare module '@viro-community/react-viro' {
     replace ("sceneKey", scene);
     replace (scene); */
     public replace(param1: any, param2: any): any;
+
     /* Jumps to a given scene that had been previously pushed. If the scene was not pushed, we
     then push and jump to it. The back history is re-ordered such that jumped to scenes are
     re-ordered to the front. As such, only the back order of sequential jumps are preserved.
@@ -51,8 +56,11 @@ declare module '@viro-community/react-viro' {
     jump ("sceneKey", scene);
     jump (scene); */
     public jump(param1: any, param2: any): any;
+
     public pop(): any;
+
     public popN(n: number): any;
+
     /* Increments the reference count for a scene within sceneDictionary that is
     mapped to the given sceneKey. If no scenes are found / mapped, we create
     one, initialize it with a reference count of 1, and store it within the
@@ -60,21 +68,26 @@ declare module '@viro-community/react-viro' {
     public incrementSceneReference(
       scene: any,
       scenekey: string,
-      limitOne: boolean,
+      limitOne: boolean
     ): any;
+
     /* Decrements the reference count for the last N scenes within
     the sceneHistory by 1. If nothing else references that given scene
     (counts equals 0), we then remove that scene from sceneDictionary. */
     public decrementReferenceForLastNScenes(n: any): any;
+
     /* Adds the given sceneKey to the sceneHistory and updates the currentSceneIndex to point
     to the scene on the top of the history stack (the most recent scene). */
     public addToHistory(sceneKey: string): any;
+
     /* Instead of preserving history, we find the last pushed sceneKey within the history stack
     matching the given sceneKey and re-order it to the front. We then update the
     currentSceneIndex to point to the scene on the top of the history stack
     (the most recent scene). */
     public reorderHistory(sceneKey: string): any;
+
     public popHistoryByN(n: any): any;
+
     public getSceneIndex(sceneTag: any): any;
   }
 
@@ -85,7 +98,7 @@ declare module '@viro-community/react-viro' {
     onTouch?: Function;
     onScroll?: Function;
     onSwipe?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
@@ -93,10 +106,10 @@ declare module '@viro-community/react-viro' {
     onCameraTransformUpdate?: Function;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -109,7 +122,7 @@ declare module '@viro-community/react-viro' {
       ceilingMaterial?: string;
       floorMaterial?: string;
     };
-    physicsWorld?: {gravity: number[]; drawBounds?: boolean};
+    physicsWorld?: { gravity: number[]; drawBounds?: boolean };
     postProcessEffects?: string[];
   }
   export class ViroScene extends Component<ViroSceneProps> {
@@ -117,17 +130,20 @@ declare module '@viro-community/react-viro' {
       from: any,
       to: any,
       closest: any,
-      viroTag: any,
+      viroTag: any
     ): Promise<any>;
+
     public findCollisionsWithShapeAsync(
       from: any,
       to: any,
       shapeString: any,
       shapeParam: any,
-      viroTag: any,
+      viroTag: any
     ): Promise<any>;
+
     /* ##### DEPRECATION WARNING - this prop may be removed in future releases ##### */
     public getCameraPositionAsync(): Promise<any>;
+
     public getCameraOrientationAsync(): Promise<any>;
   }
 
@@ -158,10 +174,10 @@ declare module '@viro-community/react-viro' {
     shadowCastingBitMask?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -177,7 +193,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     /* Enables high accuracy event collision checks for this object.
     This can be useful for complex 3D objects where the default
     checking method of bounding boxes do not provide adequate
@@ -191,17 +207,17 @@ declare module '@viro-community/react-viro' {
     highAccuracyEvents?: boolean;
     highAccuracyGaze?: boolean;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -209,10 +225,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroBox extends Component<ViroBoxProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -242,6 +263,7 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroMaterialVideo extends Component<ViroMaterialVideoProps> {
     public setNativeProps(nativeProps: any): any;
+
     public seekToTime(timeInSeconds: any): any;
   }
 
@@ -269,20 +291,20 @@ declare module '@viro-community/react-viro' {
     lightReceivingBitMask?: number;
     shadowCastingBitMask?: number;
     onTransformUpdate?: Function;
-    stereoMode?: 'LeftRight' | 'RightLeft' | 'TopBottom' | 'BottomTop' | 'None';
+    stereoMode?: "LeftRight" | "RightLeft" | "TopBottom" | "BottomTop" | "None";
     width?: number;
     height?: number;
     paused?: boolean;
     loop?: boolean;
     muted?: boolean;
     volume?: number;
-    source: {uri?: string} | number;
+    source: { uri?: string } | number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -297,7 +319,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     /* Callback invoked when the underlying video component begins buffering. Called at
     least once at the beginning of playback/video creation. */
     onBufferStart?: Function;
@@ -314,17 +336,17 @@ declare module '@viro-community/react-viro' {
     {nativeEvent: {error}} */
     onError?: Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -332,18 +354,24 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroVideo extends Component<ViroVideoProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public setNativeProps(nativeProps: any): any;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public seekToTime(timeInSeconds: any): any;
   }
 
   /* Used to render a 360 video on the background sphere. */
   interface Viro360VideoProps {
     /* The video uri to play */
-    source: {uri?: string} | number;
+    source: { uri?: string } | number;
     rotation?: number[];
     paused?: boolean;
     loop?: boolean;
@@ -364,10 +392,11 @@ declare module '@viro-community/react-viro' {
     /* Callback triggered when the video fails to load. Invoked with
     {nativeEvent: {error}} */
     onError?: Function;
-    stereoMode?: 'LeftRight' | 'RightLeft' | 'TopBottom' | 'BottomTop' | 'None';
+    stereoMode?: "LeftRight" | "RightLeft" | "TopBottom" | "BottomTop" | "None";
   }
   export class Viro360Video extends Component<Viro360VideoProps> {
     public setNativeProps(nativeProps: any): any;
+
     public seekToTime(timeInSeconds: any): any;
   }
 
@@ -394,10 +423,10 @@ declare module '@viro-community/react-viro' {
     opacity?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -412,19 +441,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -432,10 +461,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroNode extends Component<ViroNodeProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -464,10 +498,10 @@ declare module '@viro-community/react-viro' {
     shadowCastingBitMask?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -482,19 +516,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -502,10 +536,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroPortal extends Component<ViroPortalProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -532,10 +571,10 @@ declare module '@viro-community/react-viro' {
     opacity?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -552,14 +591,16 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     viroTag?: string;
     onCollision?: Function;
     passable?: boolean;
   }
   export class ViroPortalScene extends Component<ViroPortalSceneProps> {
     public setNativeProps(nativeProps: any): any;
+
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
   }
 
@@ -628,10 +669,10 @@ declare module '@viro-community/react-viro' {
     transformBehaviors?: string[] | string;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -646,7 +687,7 @@ declare module '@viro-community/react-viro' {
     onTouch?: Function;
     onScroll?: Function;
     onSwipe?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     /* Enables high accuracy event collision checks for this object.
     This can be useful for complex 3D objects where the default
     checking method of bounding boxes do not provide adequate
@@ -663,17 +704,17 @@ declare module '@viro-community/react-viro' {
     onPinch?: Function;
     onRotate?: Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -681,17 +722,22 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroSphere extends Component<ViroSphereProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, atPosition: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
   /* Used to render a ViroImage */
   interface ViroImageProps {
     /* The image file, which is required */
-    source: {uri?: string} | number;
+    source: { uri?: string } | number;
     /* The position of the card */
     position?: number[];
     rotation?: number[];
@@ -701,9 +747,9 @@ declare module '@viro-community/react-viro' {
     opacity?: number;
     width?: number;
     height?: number;
-    resizeMode?: 'ScaleToFill' | 'ScaleToFit' | 'StretchToFill';
-    imageClipMode?: 'None' | 'ClipToBounds';
-    stereoMode?: 'LeftRight' | 'RightLeft' | 'TopBottom' | 'BottomTop' | 'None';
+    resizeMode?: "ScaleToFill" | "ScaleToFit" | "StretchToFill";
+    imageClipMode?: "None" | "ClipToBounds";
+    stereoMode?: "LeftRight" | "RightLeft" | "TopBottom" | "BottomTop" | "None";
     materials?: string[] | string;
     animation?: {
       name?: string;
@@ -722,16 +768,16 @@ declare module '@viro-community/react-viro' {
     renderingOrder?: number;
     visible?: boolean;
     style?: any;
-    placeholderSource?: {uri?: string} | number;
-    placeHolderSource?: {uri?: string} | number;
+    placeholderSource?: { uri?: string } | number;
+    placeHolderSource?: { uri?: string } | number;
     mipmap?: boolean;
-    format?: 'RGBA8' | 'RGB565';
+    format?: "RGBA8" | "RGB565";
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -746,7 +792,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     /* Callback triggered when we are processing the assets to be
     displayed in this ViroImage (either downloading / reading from file). */
     onLoadStart?: Function;
@@ -764,17 +810,17 @@ declare module '@viro-community/react-viro' {
     {nativeEvent: {error}} */
     onError?: Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -782,20 +828,25 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroImage extends Component<ViroImageProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
   /* Used to render a 360 image in a sphere. */
   interface Viro360ImageProps {
     /* The image file, which is required */
-    source: {uri?: string} | number;
+    source: { uri?: string } | number;
     rotation?: number[];
-    format?: 'RGBA8' | 'RGB565';
-    stereoMode?: 'LeftRight' | 'RightLeft' | 'TopBottom' | 'BottomTop' | 'None';
+    format?: "RGBA8" | "RGB565";
+    stereoMode?: "LeftRight" | "RightLeft" | "TopBottom" | "BottomTop" | "None";
     /* Callback triggered when we are processing the assets to be
     displayed in this 360 Photo (either downloading / reading from file). */
     onLoadStart?: Function;
@@ -823,7 +874,7 @@ declare module '@viro-community/react-viro' {
     /* The source cube map. Either this or a color must be specified. */
     source?: any;
     color?: any;
-    format?: 'RGBA8' | 'RGB565';
+    format?: "RGBA8" | "RGB565";
     /* Callback triggered when we are processing the assets to be
     displayed in this 360 Photo (either downloading / reading from file). */
     onLoadStart?: Function;
@@ -851,14 +902,14 @@ declare module '@viro-community/react-viro' {
     rotationPivot?: number[];
     materials?: string[] | string;
     transformBehaviors?: string[] | string;
-    type: 'OBJ' | 'VRX' | 'GLTF' | 'GLB';
+    type: "OBJ" | "VRX" | "GLTF" | "GLB";
     opacity?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -867,8 +918,8 @@ declare module '@viro-community/react-viro' {
     lightReceivingBitMask?: number;
     shadowCastingBitMask?: number;
     onTransformUpdate?: Function;
-    source: {uri?: string} | number;
-    resources?: {uri?: string} | number[];
+    source: { uri?: string } | number;
+    resources?: { uri?: string } | number[];
     animation?: {
       name?: string;
       delay?: number;
@@ -893,7 +944,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     /* Enables high accuracy event collision checks for this object.
     This can be useful for complex 3D objects where the default
     checking method of bounding boxes do not provide adequate
@@ -907,17 +958,17 @@ declare module '@viro-community/react-viro' {
     highAccuracyEvents?: boolean;
     highAccuracyGaze?: boolean;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -925,10 +976,15 @@ declare module '@viro-community/react-viro' {
   }
   export class Viro3DObject extends Component<Viro3DObjectProps> {
     public setNativeProps(nativeProps: any): any;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
   }
 
@@ -1044,10 +1100,10 @@ declare module '@viro-community/react-viro' {
     shadowCastingBitMask?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1063,19 +1119,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1083,10 +1139,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroFlexView extends Component<ViroFlexViewProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -1103,15 +1164,15 @@ declare module '@viro-community/react-viro' {
     color?: any;
     extrusionDepth?: number;
     outerStroke?: {
-      type?: 'None' | 'Outline' | 'DropShadow';
+      type?: "None" | "Outline" | "DropShadow";
       width?: number;
       color?: any;
     };
     width?: number;
     height?: number;
     maxLines?: number;
-    textClipMode?: 'None' | 'ClipToBounds';
-    textLineBreakMode?: 'WordWrap' | 'CharWrap' | 'Justify' | 'None';
+    textClipMode?: "None" | "ClipToBounds";
+    textLineBreakMode?: "WordWrap" | "CharWrap" | "Justify" | "None";
     renderingOrder?: number;
     visible?: boolean;
     style?: any;
@@ -1131,10 +1192,10 @@ declare module '@viro-community/react-viro' {
     shadowCastingBitMask?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1150,19 +1211,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1170,10 +1231,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroText extends Component<ViroTextProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -1205,10 +1271,10 @@ declare module '@viro-community/react-viro' {
     shadowCastingBitMask?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1224,7 +1290,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     /* Enables high accuracy event collision checks for this object.
     This can be useful for complex 3D objects where the default
     checking method of bounding boxes do not provide adequate
@@ -1238,17 +1304,17 @@ declare module '@viro-community/react-viro' {
     highAccuracyEvents?: boolean;
     highAccuracyGaze?: boolean;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1256,10 +1322,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroGeometry extends Component<ViroGeometryProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -1287,10 +1358,10 @@ declare module '@viro-community/react-viro' {
     transformBehaviors?: string[] | string;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1312,19 +1383,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1332,10 +1403,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroSurface extends Component<ViroSurfaceProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public setNativeProps(nativeProps: any): any;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
   }
 
@@ -1364,10 +1440,10 @@ declare module '@viro-community/react-viro' {
     transformBehaviors?: string[] | string;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1389,19 +1465,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1409,16 +1485,21 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroQuad extends Component<ViroQuadProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public setNativeProps(nativeProps: any): any;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
   }
 
   interface ViroAnimatedImageProps {
-    source: {uri?: string} | number;
-    placeholderSource?: {uri?: string} | number;
+    source: { uri?: string } | number;
+    placeholderSource?: { uri?: string } | number;
     position?: number[];
     rotation?: number[];
     scale?: number[];
@@ -1427,9 +1508,9 @@ declare module '@viro-community/react-viro' {
     opacity?: number;
     width?: number;
     height?: number;
-    resizeMode?: 'ScaleToFill' | 'ScaleToFit' | 'StretchToFill';
-    imageClipMode?: 'None' | 'ClipToBounds';
-    stereoMode?: 'LeftRight' | 'RightLeft' | 'TopBottom' | 'BottomTop' | 'None';
+    resizeMode?: "ScaleToFill" | "ScaleToFit" | "StretchToFill";
+    imageClipMode?: "None" | "ClipToBounds";
+    stereoMode?: "LeftRight" | "RightLeft" | "TopBottom" | "BottomTop" | "None";
     materials?: string[] | string;
     animation?: {
       interruptible?: boolean;
@@ -1451,10 +1532,10 @@ declare module '@viro-community/react-viro' {
     loop?: boolean;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1469,7 +1550,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     /* Callback triggered when we are processing the assets to be
     displayed in this ViroImage (either downloading / reading from file). */
     onLoadStart?: Function;
@@ -1487,17 +1568,17 @@ declare module '@viro-community/react-viro' {
     {nativeEvent: {error}} */
     onError?: Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     renderingOrder?: number;
@@ -1506,10 +1587,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroAnimatedImage extends Component<ViroAnimatedImageProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public setNativeProps(nativeProps: any): any;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
   }
 
@@ -1538,10 +1624,10 @@ declare module '@viro-community/react-viro' {
     highAccuracyEvents?: boolean;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1563,19 +1649,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1583,27 +1669,32 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroPolygon extends Component<ViroPolygonProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public setNativeProps(nativeProps: any): any;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
   }
 
   /* Composite controle for 2D button */
   interface ViroButtonProps {
     /* The button image file, which is required */
-    source: {uri?: string} | number;
+    source: { uri?: string } | number;
     /* The image file, to be displayed when the user is hovering over it */
-    hoverSource?: {uri?: string} | number;
+    hoverSource?: { uri?: string } | number;
     /* The image file, to be displayed when the user clicks the button */
-    clickSource?: {uri?: string} | number;
+    clickSource?: { uri?: string } | number;
     /* ##### DEPRECATION WARNING - this prop may be removed in future releases #####
     The image file, to be displayed when the user taps the button */
-    tapSource?: {uri?: string} | number;
+    tapSource?: { uri?: string } | number;
     /* ##### DEPRECATION WARNING - this prop may be removed in future releases #####
     The image file, to be displayed when the user is gazing over it */
-    gazeSource?: {uri?: string} | number;
+    gazeSource?: { uri?: string } | number;
     position?: number[];
     scale?: number[];
     rotation?: number[];
@@ -1628,10 +1719,10 @@ declare module '@viro-community/react-viro' {
     width?: number;
     style?: any;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1647,19 +1738,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1667,14 +1758,18 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroButton extends Component<ViroButtonProps> {
     public applyImpulse(force: any, atPosition: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
   }
 
   interface ViroSoundProps {
-    source: string | {uri?: string} | number;
+    source: string | { uri?: string } | number;
     paused?: boolean;
     loop?: boolean;
     muted?: boolean;
@@ -1684,13 +1779,16 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroSound extends Component<ViroSoundProps> {
     public setNativeProps(nativeProps: any): any;
+
     public seekToTime(timeInSeconds: any): any;
+
     public preloadSounds(soundMap: any): Promise<any>;
+
     public unloadSounds(soundKeys: any): any;
   }
 
   interface ViroSoundFieldProps {
-    source: string | {uri?: string} | number;
+    source: string | { uri?: string } | number;
     paused?: boolean;
     loop?: boolean;
     muted?: boolean;
@@ -1701,11 +1799,12 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroSoundField extends Component<ViroSoundFieldProps> {
     public setNativeProps(nativeProps: any): any;
+
     public seekToTime(timeInSeconds: any): any;
   }
 
   interface ViroSpatialSoundProps {
-    source: string | {uri?: string} | number;
+    source: string | { uri?: string } | number;
     paused?: boolean;
     loop?: boolean;
     muted?: boolean;
@@ -1719,8 +1818,11 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroSpatialSound extends Component<ViroSpatialSoundProps> {
     public setNativeProps(nativeProps: any): any;
+
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public seekToTime(timeInSeconds: any): any;
   }
 
@@ -1741,6 +1843,7 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroController extends Component<ViroControllerProps> {
     public getControllerForwardAsync(): Promise<any>;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -1768,13 +1871,13 @@ declare module '@viro-community/react-viro' {
     visible?: boolean;
     /* Spinner visual type for either a light or dark theme.
     This defaults to dark. */
-    type?: 'Dark' | 'Light';
+    type?: "Dark" | "Light";
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1787,19 +1890,19 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1807,9 +1910,13 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroSpinner extends Component<ViroSpinnerProps> {
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
   }
 
@@ -1848,10 +1955,10 @@ declare module '@viro-community/react-viro' {
     shadowCastingBitMask?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -1867,21 +1974,21 @@ declare module '@viro-community/react-viro' {
     onSwipe?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     highAccuracyGaze?: boolean;
     onDrag?: Function;
     physicsBody?: {
-      type: 'Dynamic' | 'Kinematic' | 'Static';
+      type: "Dynamic" | "Kinematic" | "Static";
       mass?: number;
       restitution?: number;
-      shape?: {type: 'Box' | 'Sphere' | 'Compound'; params?: number[]};
+      shape?: { type: "Box" | "Sphere" | "Compound"; params?: number[] };
       friction?: number;
       useGravity?: boolean;
       enabled?: boolean;
       velocity?: number[];
       force?:
-        | {value?: number[]; position?: number[]}[]
-        | {value?: number[]; position?: number[]};
+        | { value?: number[]; position?: number[] }[]
+        | { value?: number[]; position?: number[] };
       torque?: number[];
     };
     viroTag?: string;
@@ -1889,10 +1996,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroPolyline extends Component<ViroPolylineProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public applyImpulse(force: any, position: any): any;
+
     public applyTorqueImpulse(torque: any): any;
+
     public setVelocity(velocity: any): any;
+
     public setNativeProps(nativeProps: any): any;
   }
 
@@ -1916,7 +2028,7 @@ declare module '@viro-community/react-viro' {
     run?: boolean;
     fixedToEmitter?: boolean;
     image: {
-      source: {uri?: string} | number;
+      source: { uri?: string } | number;
       height?: number;
       width?: number;
       bloomThreshold?: number;
@@ -1951,28 +2063,28 @@ declare module '@viro-community/react-viro' {
     particleAppearance?: {
       opacity?: {
         initialRange?: number[];
-        factor?: 'Time' | 'Distance';
-        interpolation?: {interval?: number[]; endValue?: number}[];
+        factor?: "Time" | "Distance";
+        interpolation?: { interval?: number[]; endValue?: number }[];
       };
       scale?: {
         initialRange?: number[][];
-        factor?: 'Time' | 'Distance';
-        interpolation?: {interval?: number[]; endValue?: number[]}[];
+        factor?: "Time" | "Distance";
+        interpolation?: { interval?: number[]; endValue?: number[] }[];
       };
       rotation?: {
         initialRange?: number[];
-        factor?: 'Time' | 'Distance';
-        interpolation?: {interval?: number[]; endValue?: number}[];
+        factor?: "Time" | "Distance";
+        interpolation?: { interval?: number[]; endValue?: number }[];
       };
       color?: {
         initialRange?: any[];
-        factor?: 'Time' | 'Distance';
-        interpolation?: {interval?: number[]; endValue?: any}[];
+        factor?: "Time" | "Distance";
+        interpolation?: { interval?: number[]; endValue?: any }[];
       };
     };
     particlePhysics?: {
-      velocity?: {initialRange?: number[][]};
-      acceleration?: {initialRange?: number[][]};
+      velocity?: { initialRange?: number[][] };
+      acceleration?: { initialRange?: number[][] };
       explosiveImpulse?: {
         impulse?: number;
         position?: number[];
@@ -1982,13 +2094,15 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroParticleEmitter extends Component<ViroParticleEmitterProps> {
     public getTransformAsync(): Promise<any>;
+
     public getBoundingBoxAsync(): Promise<any>;
+
     public setNativeProps(nativeProps: any): any;
   }
 
   interface ViroLightingEnvironmentProps {
     /* The hdr image file, which is required */
-    source: {uri?: string} | number;
+    source: { uri?: string } | number;
     /* Callback triggered when we are processing the assets to be
     used in computing this lighting environment (either downloading / reading from file). */
     onLoadStart?: Function;
@@ -2017,7 +2131,7 @@ declare module '@viro-community/react-viro' {
     apiKey: string;
     /* ViroSceneNavigator uses "scene" objects like the following to
     describe a scene. */
-    initialScene: {scene: Function};
+    initialScene: { scene: Function };
     /* Called when either the user physically decides to exit vr (hits
     the "X" buton). */
     onExitViro?: Function;
@@ -2032,6 +2146,7 @@ declare module '@viro-community/react-viro' {
   }
   export class Viro3DSceneNavigator extends Component<Viro3DSceneNavigatorProps> {
     public getRandomTag(): any;
+
     /* Pushes a scene and reference it with the given key if provided.
     If the scene has been previously pushed, we simply show the scene again.
     Note that the back history order of which scenes were pushed is preserved.
@@ -2043,6 +2158,7 @@ declare module '@viro-community/react-viro' {
     push ("sceneKey", scene);
     push (scene); */
     public push(param1: any, param2: any): any;
+
     /* Replace the top scene in the stack with the given scene. The remainder of the back
     history is kept in the same order as before.
 
@@ -2051,6 +2167,7 @@ declare module '@viro-community/react-viro' {
     replace ("sceneKey", scene);
     replace (scene); */
     public replace(param1: any, param2: any): any;
+
     /* Jumps to a given scene that had been previously pushed. If the scene was not pushed, we
     then push and jump to it. The back history is re-ordered such that jumped to scenes are
     re-ordered to the front. As such, only the back order of sequential jumps are preserved.
@@ -2060,8 +2177,11 @@ declare module '@viro-community/react-viro' {
     jump ("sceneKey", scene);
     jump (scene); */
     public jump(param1: any, param2: any): any;
+
     public pop(): any;
+
     public popN(n: number): any;
+
     /* Increments the reference count for a scene within sceneDictionary that is
     mapped to the given sceneKey. If no scenes are found / mapped, we create
     one, initialize it with a reference count of 1, and store it within the
@@ -2069,21 +2189,26 @@ declare module '@viro-community/react-viro' {
     public incrementSceneReference(
       scene: any,
       scenekey: string,
-      limitOne: boolean,
+      limitOne: boolean
     ): any;
+
     /* Decrements the reference count for the last N scenes within
     the sceneHistory by 1. If nothing else references that given scene
     (counts equals 0), we then remove that scene from sceneDictionary. */
     public decrementReferenceForLastNScenes(n: any): any;
+
     /* Adds the given sceneKey to the sceneHistory and updates the currentSceneIndex to point
     to the scene on the top of the history stack (the most recent scene). */
     public addToHistory(sceneKey: string): any;
+
     /* Instead of preserving history, we find the last pushed sceneKey within the history stack
     matching the given sceneKey and re-order it to the front. We then update the
     currentSceneIndex to point to the scene on the top of the history stack
     (the most recent scene). */
     public reorderHistory(sceneKey: string): any;
+
     public popHistoryByN(n: any): any;
+
     public getSceneIndex(sceneTag: any): any;
   }
 
@@ -2099,7 +2224,7 @@ declare module '@viro-community/react-viro' {
     apiKey: string;
     /* ViroSceneNavigator uses "scene" objects like the following to
     describe a scene. */
-    initialScene: {scene: Function};
+    initialScene: { scene: Function };
     /* Called when either the user physically decides to exit vr (hits
     the "X" buton). */
     onExitViro?: Function;
@@ -2114,6 +2239,7 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroVRSceneNavigator extends Component<ViroVRSceneNavigatorProps> {
     public getRandomTag(): any;
+
     /* Pushes a scene and reference it with the given key if provided.
     If the scene has been previously pushed, we simply show the scene again.
     Note that the back history order of which scenes were pushed is preserved.
@@ -2125,6 +2251,7 @@ declare module '@viro-community/react-viro' {
     push ("sceneKey", scene);
     push (scene); */
     public push(param1: any, param2: any): any;
+
     /* Replace the top scene in the stack with the given scene. The remainder of the back
     history is kept in the same order as before.
 
@@ -2133,6 +2260,7 @@ declare module '@viro-community/react-viro' {
     replace ("sceneKey", scene);
     replace (scene); */
     public replace(param1: any, param2: any): any;
+
     /* Jumps to a given scene that had been previously pushed. If the scene was not pushed, we
     then push and jump to it. The back history is re-ordered such that jumped to scenes are
     re-ordered to the front. As such, only the back order of sequential jumps are preserved.
@@ -2142,8 +2270,11 @@ declare module '@viro-community/react-viro' {
     jump ("sceneKey", scene);
     jump (scene); */
     public jump(param1: any, param2: any): any;
+
     public pop(): any;
+
     public popN(n: number): any;
+
     /* Increments the reference count for a scene within sceneDictionary that is
     mapped to the given sceneKey. If no scenes are found / mapped, we create
     one, initialize it with a reference count of 1, and store it within the
@@ -2151,21 +2282,26 @@ declare module '@viro-community/react-viro' {
     public incrementSceneReference(
       scene: any,
       scenekey: string,
-      limitOne: boolean,
+      limitOne: boolean
     ): any;
+
     /* Decrements the reference count for the last N scenes within
     the sceneHistory by 1. If nothing else references that given scene
     (counts equals 0), we then remove that scene from sceneDictionary. */
     public decrementReferenceForLastNScenes(n: any): any;
+
     /* Adds the given sceneKey to the sceneHistory and updates the currentSceneIndex to point
     to the scene on the top of the history stack (the most recent scene). */
     public addToHistory(sceneKey: string): any;
+
     /* Instead of preserving history, we find the last pushed sceneKey within the history stack
     matching the given sceneKey and re-order it to the front. We then update the
     currentSceneIndex to point to the scene on the top of the history stack
     (the most recent scene). */
     public reorderHistory(sceneKey: string): any;
+
     public popHistoryByN(n: any): any;
+
     public getSceneIndex(sceneTag: any): any;
   }
 
@@ -2174,11 +2310,11 @@ declare module '@viro-community/react-viro' {
     apiKey: string;
     /* ViroARSceneNavigator uses "scene" objects like the following to
     describe a scene. */
-    initialScene: {scene: Function};
+    initialScene: { scene: Function };
     autofocus?: boolean;
     /* iOS only props! Note: these props may change as the underlying platforms coalesce in features. */
-    worldAlignment?: 'Gravity' | 'GravityAndHeading' | 'Camera';
-    videoQuality?: 'High' | 'Low';
+    worldAlignment?: "Gravity" | "GravityAndHeading" | "Camera";
+    videoQuality?: "High" | "Low";
     numberOfTrackedImages?: number;
     /* Renderer settings that can be used to enable or disable various
     renderer capabilities and algorithms. */
@@ -2191,6 +2327,7 @@ declare module '@viro-community/react-viro' {
   }
   export class ViroARSceneNavigator extends Component<ViroARSceneNavigatorProps> {
     public getRandomTag(): any;
+
     /* Pushes a scene and reference it with the given key if provided.
     If the scene has been previously pushed, we simply show the scene again.
     Note that the back history order of which scenes were pushed is preserved.
@@ -2202,6 +2339,7 @@ declare module '@viro-community/react-viro' {
     push ("sceneKey", scene);
     push (scene); */
     public push(param1: any, param2: any): any;
+
     /* Replace the top scene in the stack with the given scene. The remainder of the back
     history is kept in the same order as before.
 
@@ -2210,6 +2348,7 @@ declare module '@viro-community/react-viro' {
     replace ("sceneKey", scene);
     replace (scene); */
     public replace(param1: any, param2: any): any;
+
     /* Jumps to a given scene that had been previously pushed. If the scene was not pushed, we
     then push and jump to it. The back history is re-ordered such that jumped to scenes are
     re-ordered to the front. As such, only the back order of sequential jumps are preserved.
@@ -2219,8 +2358,11 @@ declare module '@viro-community/react-viro' {
     jump ("sceneKey", scene);
     jump (scene); */
     public jump(param1: any, param2: any): any;
+
     public pop(): any;
+
     public popN(n: number): any;
+
     /* Increments the reference count for a scene within sceneDictionary that is
     mapped to the given sceneKey. If no scenes are found / mapped, we create
     one, initialize it with a reference count of 1, and store it within the
@@ -2228,28 +2370,33 @@ declare module '@viro-community/react-viro' {
     public incrementSceneReference(
       scene: any,
       scenekey: string,
-      limitOne: boolean,
+      limitOne: boolean
     ): any;
+
     /* Decrements the reference count for the last N scenes within
     the sceneHistory by 1. If nothing else references that given scene
     (counts equals 0), we then remove that scene from sceneDictionary. */
     public decrementReferenceForLastNScenes(n: any): any;
+
     /* Adds the given sceneKey to the sceneHistory and updates the currentSceneIndex to point
     to the scene on the top of the history stack (the most recent scene). */
     public addToHistory(sceneKey: string): any;
+
     /* Instead of preserving history, we find the last pushed sceneKey within the history stack
     matching the given sceneKey and re-order it to the front. We then update the
     currentSceneIndex to point to the scene on the top of the history stack
     (the most recent scene). */
     public reorderHistory(sceneKey: string): any;
+
     public popHistoryByN(n: any): any;
+
     public getSceneIndex(sceneTag: any): any;
   }
 
   interface ViroARSceneProps {
     displayPointCloud?:
       | {
-          imageSource?: {uri?: string} | number;
+          imageSource?: { uri?: string } | number;
           imageScale?: number[];
           maxPoints?: number;
         }
@@ -2257,10 +2404,10 @@ declare module '@viro-community/react-viro' {
     ignoreEventHandling?: boolean;
     anchorDetectionTypes?: string[] | string;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -2278,7 +2425,7 @@ declare module '@viro-community/react-viro' {
     onCameraARHitTest?: Function;
     onARPointCloudUpdate?: Function;
     onCameraTransformUpdate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     onTrackingUpdated?: Function;
     onPlatformUpdate?: Function;
     onAmbientLightUpdate?: Function;
@@ -2292,7 +2439,7 @@ declare module '@viro-community/react-viro' {
       ceilingMaterial?: string;
       floorMaterial?: string;
     };
-    physicsWorld?: {gravity: number[]; drawBounds?: boolean};
+    physicsWorld?: { gravity: number[]; drawBounds?: boolean };
     postProcessEffects?: string[];
     /* ##### DEPRECATION WARNING - this prop may be removed in future releases ##### */
     onTrackingInitialized?: Function;
@@ -2302,24 +2449,31 @@ declare module '@viro-community/react-viro' {
       from: any,
       to: any,
       closest: any,
-      viroTag: any,
+      viroTag: any
     ): Promise<any>;
+
     public findCollisionsWithShapeAsync(
       from: any,
       to: any,
       shapeString: any,
       shapeParam: any,
-      viroTag: any,
+      viroTag: any
     ): Promise<any>;
+
     public performARHitTestWithRay(ray: any): Promise<any>;
+
     public performARHitTestWithWorldPoints(
       origin: any,
-      destination: any,
+      destination: any
     ): Promise<any>;
+
     public performARHitTestWithPosition(position: any): Promise<any>;
+
     public performARHitTestWithPoint(x: any, y: any): Promise<any>;
+
     /* ##### DEPRECATION WARNING - this prop may be removed in future releases ##### */
     public getCameraPositionAsync(): Promise<any>;
+
     public getCameraOrientationAsync(): Promise<any>;
     // public getCameraPositionAsync(): Promise<any>;
   }
@@ -2330,20 +2484,20 @@ declare module '@viro-community/react-viro' {
     minHeight?: number;
     minWidth?: number;
     alignment?:
-      | 'Horizontal'
-      | 'HorizontalUpward'
-      | 'HorizontalDownward'
-      | 'Vertical';
+      | "Horizontal"
+      | "HorizontalUpward"
+      | "HorizontalDownward"
+      | "Vertical";
     pauseUpdates?: boolean;
     renderingOrder?: number;
     visible?: boolean;
     opacity?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -2358,7 +2512,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     onCollision?: Function;
     viroTag?: string;
     onAnchorFound?: Function;
@@ -2377,19 +2531,19 @@ declare module '@viro-community/react-viro' {
     minHeight?: number;
     minWidth?: number;
     alignment?:
-      | 'Horizontal'
-      | 'HorizontalUpward'
-      | 'HorizontalDownward'
-      | 'Vertical';
+      | "Horizontal"
+      | "HorizontalUpward"
+      | "HorizontalDownward"
+      | "Vertical";
     renderingOrder?: number;
     visible?: boolean;
     opacity?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -2404,7 +2558,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     onCollision?: Function;
     viroTag?: string;
     onAnchorFound?: Function;
@@ -2427,10 +2581,10 @@ declare module '@viro-community/react-viro' {
     opacity?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -2445,7 +2599,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     onCollision?: Function;
     viroTag?: string;
     onAnchorFound?: Function;
@@ -2464,10 +2618,10 @@ declare module '@viro-community/react-viro' {
     opacity?: number;
     ignoreEventHandling?: boolean;
     dragType?:
-      | 'FixedDistance'
-      | 'FixedDistanceOrigin'
-      | 'FixedToWorld'
-      | 'FixedToPlane';
+      | "FixedDistance"
+      | "FixedDistanceOrigin"
+      | "FixedToWorld"
+      | "FixedToPlane";
     dragPlane?: {
       planePoint?: number[];
       planeNormal?: number[];
@@ -2482,7 +2636,7 @@ declare module '@viro-community/react-viro' {
     onDrag?: Function;
     onPinch?: Function;
     onRotate?: Function;
-    onFuse?: {callback: Function; timeToFuse?: number} | Function;
+    onFuse?: { callback: Function; timeToFuse?: number } | Function;
     onCollision?: Function;
     viroTag?: string;
     onAnchorFound?: Function;
