@@ -21,7 +21,7 @@ Please proceed with basic environment setup with [React Native docs](https://rea
 We are using yarn with this project, so if it not installed please do.
 
 Install all npm dependencies and pods - `yarn` in root directory.
->Note: making `yarn` in the root directory will automaticaly install all pods in ./ios folder.  
+>Note: making `yarn` or `yarn add "foo"` in the root directory will automaticaly install all pods in ./ios folder.  
 >So there is no need to do this manually.
 
 ## Basic commands
