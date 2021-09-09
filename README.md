@@ -2,7 +2,7 @@
 Welcome to the project!
 
 ## Platforms support
-iOS - Full
+iOS - Full  
 Android - Partial
 
 ## Workflow tips
