@@ -9,13 +9,13 @@ import {
 } from "@viro-community/react-viro";
 
 const qrCodeImage = require("../../assets/images/anchors/mikeTarget.png");
-const rnCommunityImage = require("../../assets/images/anchors/iwantyou.png");
+const rnCommunityImage = require("../../assets/images/content/iwantyou.png");
 
 ViroARTrackingTargets.createTargets({
   qrCodeCommunity: {
     source: qrCodeImage,
     orientation: "Up",
-    physicalWidth: 0.1,
+    physicalWidth: 0.15,
   },
 });
 

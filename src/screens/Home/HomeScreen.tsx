@@ -10,6 +10,7 @@ import {
   ViroAnimations,
 } from "@viro-community/react-viro";
 import RNCommunity from "src/components/RNCommunity";
+import AppleEvent from "src/components/AppleEvent";
 
 const qrCodeImage = require("../../assets/images/anchors/qr-code.jpg");
 const rnLogoImage = require("../../assets/images/content/rnLogo.png");
@@ -66,6 +67,7 @@ const Scene = () => {
         </ViroARImageMarker>
       </ViroNode>
       <RNCommunity />
+      <AppleEvent />
     </>
   );
 
