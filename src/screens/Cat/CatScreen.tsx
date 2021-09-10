@@ -40,8 +40,8 @@ const CatScreen = () => {
       <ViroNode
         key="cat"
         opacity={1}
-        scale={[0.5, 0.5, 0.5]}
-        position={[0, 0, -70]}
+        scale={[1, 1, 1]}
+        position={[0, 100, -70]}
         rotation={[0, 180, 0]}
         animation={{ name: "animateLogo", loop: true, run: runAnimation }}
       >
