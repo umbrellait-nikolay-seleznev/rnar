@@ -1160,6 +1160,8 @@ declare module "@viro-community/react-viro" {
     position?: number[];
     rotation?: number[];
     text: string;
+    textAlign?: "left" | "right" | "center";
+    textAlignVertical?: "top" | "bottom" | "center";
     rotationPivot?: number[];
     color?: any;
     extrusionDepth?: number;
