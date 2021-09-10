@@ -56,8 +56,6 @@ const RNCommunity = () => {
             style={{
               fontFamily: "Arial",
               fontSize: 50,
-              backgroundColor: "yellow",
-              color: "#000000",
             }}
             position={[0, -0.25, 0]}
           />

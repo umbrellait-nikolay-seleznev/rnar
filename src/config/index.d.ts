@@ -1178,6 +1178,7 @@ declare module "@viro-community/react-viro" {
     renderingOrder?: number;
     visible?: boolean;
     style?: any;
+    scale?: number[];
     materials?: string[] | string;
     animation?: {
       interruptible?: boolean;
