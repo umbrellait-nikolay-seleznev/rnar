@@ -14,4 +14,21 @@ module.exports = {
       },
     }),
   },
+  resolver: {
+    assetExts: [
+      "obj",
+      "mtl",
+      "jpg",
+      "jpeg",
+      "vrx",
+      "hdr",
+      "gltf",
+      "glb",
+      "bin",
+      "arobject",
+      "png",
+      "svg",
+      "mp4",
+    ],
+  },
 };

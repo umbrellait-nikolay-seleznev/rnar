@@ -8,17 +8,22 @@ import {
   ViroARTrackingTargets,
   ViroImage,
   ViroAnimations,
+  ViroFlexView,
 } from "@viro-community/react-viro";
+import RNCommunity from "src/components/RNCommunity";
+import PortalScene from "./PortalScene";
 import { CatScreen } from "..";
 
-const qrCodeImage = require("../../assets/images/anchors/qr-code.jpg");
+import { styles } from "./HomeScreen.styles";
+
+const qrCodeImage = require("../../assets/images/anchors/qr-code.png");
 const rnLogoImage = require("../../assets/images/content/rnLogo.png");
 
 ViroARTrackingTargets.createTargets({
   qrCode: {
     source: qrCodeImage,
     orientation: "Up",
-    physicalWidth: 0.035,
+    physicalWidth: 0.177,
   },
 });
 
@@ -49,24 +54,40 @@ const Scene = () => {
   const getNoTrackingUI = () => <ViroText text="No Tracking" />;
 
   const getARScene = () => (
-    <ViroNode>
-      <ViroARImageMarker
-        target="qrCode"
-        onAnchorFound={() => setRunAnimation(true)}
-      >
-        <ViroNode
-          key="rnLogo"
-          opacity={1}
-          scale={[0.8, 0.8, 0.8]}
-          position={[0, 0, 0]}
-          rotation={[0, 0, 0]}
-          animation={{ name: "animateLogo", loop: true, run: runAnimation }}
+    <>
+      <ViroNode>
+        <ViroARImageMarker
+          target="qrCode"
+          onAnchorFound={() => setRunAnimation(true)}
         >
-          <ViroImage height={0.1} width={0.1} source={rnLogoImage} />
-        </ViroNode>
-      </ViroARImageMarker>
+          <ViroFlexView
+            opacity={1}
+            position={[-0.8, -1.8, -1.15]}
+            rotation={[-90, 0, 0]}
+          >
+            <ViroImage
+              height={0.75}
+              width={0.8}
+              source={rnLogoImage}
+              animation={{ name: "animateLogo", loop: true, run: runAnimation }}
+            />
+            <ViroText
+              color="#03A7D2"
+              style={styles.text}
+              text="React Native is awesome!"
+              textAlign="center"
+              textAlignVertical="bottom"
+              textLineBreakMode="None"
+              position={[0, -0.2, 0]}
+              width={60}
+            />
+          </ViroFlexView>
+        </ViroARImageMarker>
+      </ViroNode>
+      <RNCommunity />
+      <PortalScene />
       <CatScreen />
-    </ViroNode>
+    </>
   );
 
   return (
