@@ -12,17 +12,24 @@ import {
 } from "@viro-community/react-viro";
 import RNCommunity from "src/components/RNCommunity";
 import PortalScene from "./PortalScene";
+import { CatScreen } from "..";
 
 import { styles } from "./HomeScreen.styles";
 
 const qrCodeImage = require("../../assets/images/anchors/qr-code.png");
 const rnLogoImage = require("../../assets/images/content/rnLogo.png");
+const catImage = require("../../assets/images/anchors/cat.png");
 
 ViroARTrackingTargets.createTargets({
   qrCode: {
     source: qrCodeImage,
     orientation: "Up",
     physicalWidth: 0.177,
+  },
+  cat: {
+    source: catImage,
+    orientation: "Up",
+    physicalWidth: 0.035,
   },
 });
 
@@ -85,6 +92,22 @@ const Scene = () => {
       </ViroNode>
       <RNCommunity />
       <PortalScene />
+      <ViroNode>
+        <ViroARImageMarker
+          target="cat"
+          onAnchorFound={() => setRunAnimation(true)}
+        >
+          <ViroNode
+            key="cat"
+            opacity={1}
+            scale={[0.5, 0.5, 0.5]}
+            position={[0, 0, -70]}
+            rotation={[0, 180, 0]}
+          >
+            <CatScreen />
+          </ViroNode>
+        </ViroARImageMarker>
+      </ViroNode>
     </>
   );
 
