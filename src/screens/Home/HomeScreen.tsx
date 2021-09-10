@@ -9,6 +9,7 @@ import {
   ViroImage,
   ViroAnimations,
 } from "@viro-community/react-viro";
+import RNCommunity from "src/components/RNCommunity";
 
 const qrCodeImage = require("../../assets/images/anchors/qr-code.jpg");
 const rnLogoImage = require("../../assets/images/content/rnLogo.png");
@@ -48,21 +49,24 @@ const Scene = () => {
   const getNoTrackingUI = () => <ViroText text="No Tracking" />;
 
   const getARScene = () => (
-    <ViroNode>
-      <ViroARImageMarker
-        target="qrCode"
-        onAnchorFound={() => setRunAnimation(true)}
-      >
-        <ViroNode
-          key="rnLogo"
-          opacity={1}
-          position={[0, 0, 0]}
-          animation={{ name: "animateLogo", run: runAnimation }}
+    <>
+      <ViroNode>
+        <ViroARImageMarker
+          target="qrCode"
+          onAnchorFound={() => setRunAnimation(true)}
         >
-          <ViroImage height={0.1} width={0.1} source={rnLogoImage} />
-        </ViroNode>
-      </ViroARImageMarker>
-    </ViroNode>
+          <ViroNode
+            key="rnLogo"
+            opacity={1}
+            position={[0, 0, 0]}
+            animation={{ name: "animateLogo", run: runAnimation }}
+          >
+            <ViroImage height={0.1} width={0.1} source={rnLogoImage} />
+          </ViroNode>
+        </ViroARImageMarker>
+      </ViroNode>
+      <RNCommunity />
+    </>
   );
 
   return (
