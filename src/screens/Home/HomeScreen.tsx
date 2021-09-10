@@ -10,6 +10,7 @@ import {
   ViroAnimations,
   ViroFlexView,
 } from "@viro-community/react-viro";
+import RNCommunity from "src/components/RNCommunity";
 
 import { styles } from "./HomeScreen.styles";
 
@@ -51,35 +52,38 @@ const Scene = () => {
   const getNoTrackingUI = () => <ViroText text="No Tracking" />;
 
   const getARScene = () => (
-    <ViroNode>
-      <ViroARImageMarker
-        target="qrCode"
-        onAnchorFound={() => setRunAnimation(true)}
-      >
-        <ViroFlexView
-          opacity={1}
-          position={[-0.8, -1.8, -1.15]}
-          rotation={[-90, 0, 0]}
+    <>
+      <ViroNode>
+        <ViroARImageMarker
+          target="qrCode"
+          onAnchorFound={() => setRunAnimation(true)}
         >
-          <ViroImage
-            height={0.75}
-            width={0.8}
-            source={rnLogoImage}
-            animation={{ name: "animateLogo", loop: true, run: runAnimation }}
-          />
-          <ViroText
-            color="#03A7D2"
-            style={styles.text}
-            text="React Native is awesome!"
-            textAlign="center"
-            textAlignVertical="bottom"
-            textLineBreakMode="None"
-            position={[0, -0.2, 0]}
-            width={60}
-          />
-        </ViroFlexView>
-      </ViroARImageMarker>
-    </ViroNode>
+          <ViroFlexView
+            opacity={1}
+            position={[-0.8, -1.8, -1.15]}
+            rotation={[-90, 0, 0]}
+          >
+            <ViroImage
+              height={0.75}
+              width={0.8}
+              source={rnLogoImage}
+              animation={{ name: "animateLogo", loop: true, run: runAnimation }}
+            />
+            <ViroText
+              color="#03A7D2"
+              style={styles.text}
+              text="React Native is awesome!"
+              textAlign="center"
+              textAlignVertical="bottom"
+              textLineBreakMode="None"
+              position={[0, -0.2, 0]}
+              width={60}
+            />
+          </ViroFlexView>
+        </ViroARImageMarker>
+      </ViroNode>
+      <RNCommunity />
+    </>
   );
 
   return (
