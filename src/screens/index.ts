@@ -1,3 +1,4 @@
+import CatScreen from "./Cat";
 import HomeScreen from "./Home";
 
-export { HomeScreen };
+export { HomeScreen, CatScreen };

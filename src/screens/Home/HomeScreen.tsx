@@ -9,13 +9,20 @@ import {
   ViroImage,
   ViroAnimations,
 } from "@viro-community/react-viro";
+import { CatScreen } from "..";
 
 const qrCodeImage = require("../../assets/images/anchors/qr-code.jpg");
 const rnLogoImage = require("../../assets/images/content/rnLogo.png");
+const catImage = require("../../assets/images/anchors/cat.png");
 
 ViroARTrackingTargets.createTargets({
   qrCode: {
     source: qrCodeImage,
+    orientation: "Up",
+    physicalWidth: 0.035,
+  },
+  cat: {
+    source: catImage,
     orientation: "Up",
     physicalWidth: 0.035,
   },
@@ -27,7 +34,7 @@ ViroAnimations.registerAnimations({
       rotateZ: 360,
     },
     easing: "Linear",
-    duration: 1000,
+    duration: 4000,
   },
 });
 
@@ -56,10 +63,27 @@ const Scene = () => {
         <ViroNode
           key="rnLogo"
           opacity={1}
+          scale={[0.8, 0.8, 0.8]}
           position={[0, 0, 0]}
-          animation={{ name: "animateLogo", run: runAnimation }}
+          rotation={[0, 0, 0]}
+          animation={{ name: "animateLogo", loop: true, run: runAnimation }}
         >
           <ViroImage height={0.1} width={0.1} source={rnLogoImage} />
+        </ViroNode>
+      </ViroARImageMarker>
+
+      <ViroARImageMarker
+        target="cat"
+        onAnchorFound={() => setRunAnimation(true)}
+      >
+        <ViroNode
+          key="cat"
+          opacity={1}
+          scale={[0.5, 0.5, 0.5]}
+          position={[0, 0, -70]}
+          rotation={[0, 180, 0]}
+        >
+          <CatScreen />
         </ViroNode>
       </ViroARImageMarker>
     </ViroNode>
