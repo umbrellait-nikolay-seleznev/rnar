@@ -11,6 +11,7 @@ import {
   ViroFlexView,
 } from "@viro-community/react-viro";
 import RNCommunity from "src/components/RNCommunity";
+import PortalScene from "./PortalScene";
 
 import { styles } from "./HomeScreen.styles";
 
@@ -83,6 +84,7 @@ const Scene = () => {
         </ViroARImageMarker>
       </ViroNode>
       <RNCommunity />
+      <PortalScene />
     </>
   );
 
