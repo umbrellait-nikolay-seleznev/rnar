@@ -32,7 +32,7 @@ ViroAnimations.registerAnimations({
   },
 });
 
-const CatScreen = () => {
+const CatScene = () => {
   const [runAnimation, setRunAnimation] = useState(false);
 
   return (
@@ -57,7 +57,7 @@ const CatScreen = () => {
               run: true,
             }}
             dragType="FixedDistance"
-            source={require("../../assets/images/content/cat/12221_Cat_v1_l3.obj")}
+            source={require("../../assets/images/content/cat/cat.obj")}
             resources={[
               require("../../assets/images/content/cat/12221_Cat_v1_l3.mtl"),
               require("../../assets/images/content/cat/Cat_bump.jpg"),
@@ -71,4 +71,4 @@ const CatScreen = () => {
   );
 };
 
-export default CatScreen;
+export default CatScene;

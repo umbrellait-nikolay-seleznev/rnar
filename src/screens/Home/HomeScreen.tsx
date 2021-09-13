@@ -11,8 +11,8 @@ import {
   ViroFlexView,
 } from "@viro-community/react-viro";
 import RNCommunity from "src/components/RNCommunity";
+import { CatScene } from "src/components/Cat";
 import PortalScene from "./PortalScene";
-import { CatScreen } from "..";
 
 import { styles } from "./HomeScreen.styles";
 
@@ -86,7 +86,7 @@ const Scene = () => {
       </ViroNode>
       <RNCommunity />
       <PortalScene />
-      <CatScreen />
+      <CatScene />
     </>
   );
 
